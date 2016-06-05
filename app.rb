@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
 end
 
 class Comment < ActiveRecord::Base
-	belongs_to :posts, :foreign_key => "postID"
+	#belongs_to :posts, :foreign_key => "postID"
 	# validates :name, presence: true, length: { minimum: 3 }
 	# validates :phone, presence: true
 	# validates :datestamp, presence: true
@@ -53,11 +53,11 @@ end
 
 # вывод информации о посте
 
-# get '/details/:post_id' do
+get '/details/:post_id' do
 
-# 	# получаем переменную из url'a
-# 	post_id = params[:post_id]
+ 	post_id = params[:post_id]
 
+ 	@row = Post.find(post_id)
 # 	# получаем список постов
 # 	# (у нас будет только один пост)
 # 	results = @db.execute 'select * from Posts where id = ?', [post_id]
@@ -66,11 +66,12 @@ end
 # 	@row = results[0]
 
 # 	# выбираем комментарии для нашего поста
+	@comments = Comment.find_by(postID: post_id)
 # 	@comments = @db.execute 'select * from Comments where post_id = ? order by id', [post_id]
-
+	
 # 	# возвращаем представление details.erb
-# 	erb :details
-# end
+ 	erb :details
+ end
 
 # # обработчик post-запроса /details/...
 # # (браузер отправляет данные на сервер, мы их принимаем) 
