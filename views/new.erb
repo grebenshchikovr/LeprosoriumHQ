@@ -1,8 +1,12 @@
 <h2>Add New Post</h2>
 <p>
 	<form action="/new" method="POST" role="form">
-		<textarea name="content" class="form-control" rows="6" placeholder="Type post text here"></textarea>
+		<div class="form-group">
+    	<label>Ваше имя</label>
+   		<input name="post[creator]" type="text" class="form-control" placeholder="Ваше имя" >
+  		</div>
+  		<textarea name="post[body]" class="form-control" rows="6" placeholder="Type post text here"></textarea>
 		<br />
-	 	<button type="submit" class="btn btn-primary">Submit</button>
+	 	<button type="submit" class="btn btn-primary">Yarrr!</button>
 	</form>
 </p>

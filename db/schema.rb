@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20160605171147) do
 
   create_table "posts", force: :cascade do |t|
     t.text     "creator"
-    t.text     "title"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
