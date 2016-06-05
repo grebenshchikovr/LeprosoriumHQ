@@ -66,8 +66,8 @@ get '/details/:post_id' do
 # 	@row = results[0]
 
 # 	# выбираем комментарии для нашего поста
-	@comments = Comment.find_by(postID: post_id)
-# 	@comments = @db.execute 'select * from Comments where post_id = ? order by id', [post_id]
+	@koment = Comment.find_by(postID: post_id)
+	# 	@comments = @db.execute 'select * from Comments where post_id = ? order by id', [post_id]
 	
 # 	# возвращаем представление details.erb
  	erb :details
@@ -76,14 +76,19 @@ get '/details/:post_id' do
 # # обработчик post-запроса /details/...
 # # (браузер отправляет данные на сервер, мы их принимаем) 
 
-# post '/details/:post_id' do
+ post '/details/:post_id' do
 	
 # 	# получаем переменную из url'a
-# 	post_id = params[:post_id]
-
+ 	post_id = params[:post_id]
+ 	comment = params[:comment]
 # 	# получаем переменную из post-запроса
-# 	content = params[:content]	
+ 	
 
+ 	@c = Comment.new params[:comment]
+ 	@c.postID = post_id
+ 	@c.save
+	
+	
 # 	# сохранение данных в БД
 
 # 	@db.execute 'insert into Comments
@@ -101,5 +106,5 @@ get '/details/:post_id' do
 
 # 	# перенаправление на страницу поста
 
-# 	redirect to('/details/' + post_id)
-# end
+ 	redirect to('/details/' + post_id)
+ end
